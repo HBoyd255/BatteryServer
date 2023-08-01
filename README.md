@@ -15,5 +15,5 @@ This project contains 3 main sections;
 
 ## TO-DO
 - [ ] finish writing this to-do list.
-- [ ] modify the existing python code to upload data via json.
+- [ ] transfer over existing usable code.
 - [ ] Add store uploaded json data.
