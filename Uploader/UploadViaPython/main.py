@@ -35,11 +35,19 @@ def main():
     id_string = secrets.get_deployment_id(id_file_path)
 
     # Create the URL for setting the battery information
-    url_string = url.create_url(id_string, computer_name, charge)
+    url_string = url.create_url(id_string)
 
     # Call the url to update the server with the current battery charge
     if not flags["DRY_RUN"]:
-        url.call_URL(url_string)
+        data = {"device": computer_name, "charge": charge}
+        response = url.send_data_to_URL(url_string, data)
+        response.raise_for_status()  # Raises stored HTTPError, if one occurred.
+        response_json = response.json()
+        if "message" in response_json:
+            lfm.log_text(
+                response_json["status"] + ": " + response_json["message"]
+            )
+
     else:
         print("Dry run mode: would have called url '" + url_string + "'")
 

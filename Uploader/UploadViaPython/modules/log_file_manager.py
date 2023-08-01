@@ -9,10 +9,10 @@ Each log file should be unique to the device, as long as it is not ran on
 two devices with the same name.
 
 Functions:
-configure_logger: Configures the logger for the application,
+configure_logger: Configures the logger for the application.
 line_break: Adds a line break in the form of a row of hyphens to a given file.      
 trim_log_file: Trims the given file down to a specified number of lines.
-log_flags: Logs which debug flags are enables
+log_flags: Logs which debug flags are enables.
 log_exit_code: Logs the exit code of the application.
 
 
@@ -132,3 +132,33 @@ def log_exit_code(exit_code):
         logging.info("Exit code: 0")
     else:
         logging.error(f"Exit code: {exit_code}")
+
+def log_exit_code(exit_code):
+    """
+    Logs the exit code of the application.
+
+    If the exit code is 0, its is logged as a message, indicating a
+    successful execution.
+    If the exit code it not 0, it is logged as an error, as something will
+    have gone wrong.
+
+    Args:
+        exit_code (int): The exit code of the application.
+    """
+
+    if exit_code == 0:
+        logging.info("Exit code: 0")
+    else:
+        logging.error(f"Exit code: {exit_code}")
+
+def log_text(text):
+    """
+    Prints the provided text to the log file
+
+
+    Args:
+        text (str): The exit code of the application.
+    """
+
+   
+    logging.info(text)

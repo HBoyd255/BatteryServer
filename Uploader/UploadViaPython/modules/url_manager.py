@@ -1,3 +1,4 @@
+import json
 import requests
 
 """
@@ -7,50 +8,52 @@ This module creates an calls google script urls, and returns errors if the
 request times out.
 
 Functions:
-create_log_file_path: Creates the path for the log file from given device name.
-configure_logger: Configures the logger for the application.
+create_url: Stitches together a URl from the provided deployment id.
+send_data_to_URL: Sends a JSON-encoded POST request to a provided URL.
 """
 
 
-def create_url(id, device_name, charge):
+def create_url(id):
     """
-    Stitches together a URl from the provided deployment id, device name and
-    battery charge.
-
-    Example URL - "https://script.google.com/macros/s/DEPLOYMENT_ID/exec?
-                   type=battery&mode=set&device=HPEnvy&charge=40"
+    Stitches together a URl from the provided deployment id.
 
     Args:
         id (str): the deployment id to add to the url.
-        device_name (str):  the device name to add to the url.
-        charge (str):  the charge to add to the url.
 
     Returns:
         str: the full URL to execute
     """
-    url = (
-        "https://script.google.com/macros/s/"
-        + id
-        + "/exec?type=battery&mode=set&device="
-        + device_name
-        + "&charge="
-        + charge
-    )
+    url = f"https://script.google.com/macros/s/{id}/exec"
     return url
 
 
-def call_URL(url):
+def send_data_to_URL(url, data):
     """
-    Sends a request to a provided URL.
+    Sends a JSON-encoded POST request to a provided URL.
 
     Args:
-        url (str): the url to call.
+        url (str): The URL to send the request
+        data (dict): The data to be sent in the request body. This data is
+                     JSON-encoded before being sent.
+
+    Returns:
+        requests.models.Response: The HTTP response received from the server.
 
     Raises:
-        Exception: Raised when the request to the URL times out after
-        5 seconds.
+        Exception: Raised when the request to the URL times out after 5 seconds.
     """
+
+    headers = {"Content-Type": "application/json"}
+
     try:
-        requests.get(url, timeout=5)
+        response = requests.post(
+            url, data=json.dumps(data), headers=headers, timeout=5
+        )
+        response_json = (
+            response.json()
+        )  # This will raise json.JSONDecodeError if the response isn't in JSON format
+        if response_json.get("status") != "success":
+            raise Exception("Server error: " + response_json.get("message", "Unknown error"))
+        return response
     except requests.exceptions.Timeout as e:
         raise Exception(f"Error: {e}")
