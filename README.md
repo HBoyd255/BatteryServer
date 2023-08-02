@@ -14,7 +14,15 @@ This project contains 3 main sections;
 
 ## TO-DO
 
+### Uploader
 - [ ] fix python code so I can handle HTTP codes.
-- [ ] finish writing this to-do list.
-- [ ] transfer over existing usable code.
-- [ ] Add store uploaded json data.
+
+### Server
+- [ ] Create html page
+
+### Downloader
+- [ ] Rewrite the ESP32 code.
+
+
+
+
