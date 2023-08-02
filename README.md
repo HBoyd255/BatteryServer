@@ -2,7 +2,6 @@
 
 A Google App scripts based project to monitor and display the current battery percentages of my various smart devices.
 
-
 This project is going to be a remake/continuation of my previous project [BatteryServer_V2](https://github.com/H-Boyd/BatteryServer_V2).
 
 This project contains 3 main sections;
@@ -14,6 +13,8 @@ This project contains 3 main sections;
 3. User Client (Downloader): This application retrieves the battery levels for each device from the server, providing a comprehensive view of all monitored devices.
 
 ## TO-DO
+
+- [ ] fix python code so I can handle HTTP codes.
 - [ ] finish writing this to-do list.
 - [ ] transfer over existing usable code.
 - [ ] Add store uploaded json data.
