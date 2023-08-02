@@ -8,8 +8,6 @@ function testCode() {
   console.log(getSpecificValue(BATTERY_TABLE_RANGE, "HPEnvy"));
 }
 
-
-
 function doGet(event) {
 
   try {
@@ -74,13 +72,6 @@ function doGet(event) {
     )
   }
 }
-
-
-
-
-
-
-
 
 function doPost(event) {
   try {
