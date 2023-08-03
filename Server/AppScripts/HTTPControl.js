@@ -75,9 +75,9 @@ function doGet(event) {
   try {
     validateDoGetInput(event.parameter);
 
-    let data = event.parameter;
+    let requestParameters = event.parameter;
 
-    let selector = data.selector;
+    let selector = requestParameters.selector;
 
     let devices = [];
 
@@ -90,14 +90,14 @@ function doGet(event) {
 
       case "lowest":
         let requestedDevicesCount = wrapDeviceCount(
-          data.count,
+          requestParameters.count,
           totalDeviceCount
         );
         devices = getLowestValues(SORTED_TABLE_RANGE, requestedDevicesCount);
         break;
 
       case "specific":
-        let specificDevice = data.device;
+        let specificDevice = requestParameters.device;
         devices = getSpecificValue(TABLE_RANGE, specificDevice);
         break;
 
@@ -105,7 +105,22 @@ function doGet(event) {
         throw new Error("invalid selector provided");
     }
 
-    return createJsonOutput({ status: "success", data: devices });
+    let format = requestParameters.format;
+
+    if (!format) {
+      format = "json";
+    }
+
+    switch (format) {
+      case "json":
+        return createJsonOutput({ status: "success", data: devices });
+
+      case "html":
+        return createHtmlOutput(devices);
+
+      default:
+        throw new Error("Invalid format provided");
+    }
   } catch (error) {
     return createJsonOutput({ status: "error", message: error.message });
   }
@@ -132,12 +147,12 @@ function doGet(event) {
 function doPost(event) {
   try {
     try {
-      var data = JSON.parse(event.postData.contents);
+      var requestParameters = JSON.parse(event.postData.contents);
     } catch (e) {
       throw new Error("Invalid JSON");
     }
-    let device = data.device;
-    let charge = data.charge;
+    let device = requestParameters.device;
+    let charge = requestParameters.charge;
 
     if (!device) {
       throw new Error("Device not provided");

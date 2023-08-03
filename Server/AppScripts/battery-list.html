@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top" />
+  </head>
+
+  <body>
+    <h1>Battery Server</h1>
+    <table id="battery-table">
+      <tr>
+        <th>Device</th>
+        <th>Charge</th>
+      </tr>
+      <? for (var i = 0; i < devices.length; i++) { ?>
+      <tr>
+        <td>
+          <?= devices[i].device ?>
+        </td>
+        <td>
+          <?= devices[i].charge ?>
+        </td>
+      </tr>
+      <? } ?>
+    </table>
+  </body>
+</html>
