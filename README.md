@@ -18,7 +18,7 @@ This project contains 3 main sections;
 - [ ] fix python code so I can handle HTTP codes.
 
 ### Server
-- [ ] Create html page
+- [x] Create html page
 
 ### Downloader
 - [ ] Rewrite the ESP32 code.

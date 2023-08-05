@@ -81,11 +81,24 @@ function doGet(event) {
 
     let devices = [];
 
-    totalDeviceCount = countItemsInTable(TABLE_RANGE);
+    let totalDeviceCount = countItemsInTable(TABLE_RANGE);
+
+    let format = requestParameters.format;
+
+    if (!format) {
+      format = "json";
+    }
+
+    // If the format is html, get the background colour of each cell.
+    getColour = format == "html";
 
     switch (selector) {
       case "all":
-        devices = getLowestValues(SORTED_TABLE_RANGE, totalDeviceCount);
+        devices = getLowestValues(
+          SORTED_TABLE_RANGE,
+          totalDeviceCount,
+          getColour
+        );
         break;
 
       case "lowest":
@@ -93,22 +106,20 @@ function doGet(event) {
           requestParameters.count,
           totalDeviceCount
         );
-        devices = getLowestValues(SORTED_TABLE_RANGE, requestedDevicesCount);
+        devices = getLowestValues(
+          SORTED_TABLE_RANGE,
+          requestedDevicesCount,
+          getColour
+        );
         break;
 
       case "specific":
         let specificDevice = requestParameters.device;
-        devices = getSpecificValue(TABLE_RANGE, specificDevice);
+        devices = getSpecificValue(SORTED_TABLE_RANGE, specificDevice,getColour);
         break;
 
       default:
         throw new Error("invalid selector provided");
-    }
-
-    let format = requestParameters.format;
-
-    if (!format) {
-      format = "json";
     }
 
     switch (format) {

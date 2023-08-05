@@ -16,7 +16,11 @@
  * @throws {Error} Throws an error if the provided starting range is not
  * a valid range object.
  */
-function getLowestValues(startingRange, numDevicesToRetrieve) {
+function getLowestValues(
+  startingRange,
+  numDevicesToRetrieve,
+  needsColour = false
+) {
   // Check if the provided startingRange is a Range object.
   if (typeof startingRange.getA1Notation !== "function") {
     throw new Error("Invalid startingRange provided");
@@ -25,10 +29,24 @@ function getLowestValues(startingRange, numDevicesToRetrieve) {
   let incrementalRange = startingRange;
 
   for (let x = 0; x < numDevicesToRetrieve; x++) {
-    devices.push({
+    let device = {
       device: incrementalRange.getValue(),
       charge: incrementalRange.offset(0, 1).getValue(),
-    });
+    };
+
+    if (needsColour) {
+      let cellBackgroundColour = incrementalRange
+        .offset(0, 1)
+        .getBackgroundColor();
+
+      //TODO fix this so that the cell is tested for conditional formatting.
+      if (cellBackgroundColour != "#ffffff") {
+        device.colour = cellBackgroundColour;
+      }
+    }
+
+    devices.push(device);
+
     incrementalRange = incrementalRange.offset(1, 0);
   }
 
@@ -51,19 +69,29 @@ function getLowestValues(startingRange, numDevicesToRetrieve) {
  * containing the device name and its charge.
  * @throws {Error} Throws an error if the device name is not found in the table.
  */
-function getSpecificValue(startingRange, deviceName) {
+function getSpecificValue(startingRange, deviceName, needsColour = false) {
   let returned = findNameInTable(startingRange, deviceName);
 
   if (!returned.isFound) {
     throw new Error("Device not found in table");
   } else {
     let foundRange = returned.range;
-    return [
-      {
-        device: foundRange.getValue(),
-        charge: foundRange.offset(0, 1).getValue(),
-      },
-    ];
+
+    var device = {
+      device: foundRange.getValue(),
+      charge: foundRange.offset(0, 1).getValue(),
+    };
+
+    if (needsColour) {
+      let cellBackgroundColour = foundRange.offset(0, 1).getBackgroundColor();
+
+      //TODO fix this so that the cell is tested for conditional formatting.
+      if (cellBackgroundColour != "#ffffff") {
+        device.colour = cellBackgroundColour;
+      }
+    }
+
+    return [device];
   }
 }
 
@@ -177,7 +205,7 @@ function findNameInTable(startingRange, key) {
   let lastRow = startingRange.getSheet().getLastRow();
 
   for (
-    let incrementalRange = startingRange;
+    var incrementalRange = startingRange;
     incrementalRange.getRowIndex() <= lastRow;
     incrementalRange = incrementalRange.offset(1, 0)
   ) {
