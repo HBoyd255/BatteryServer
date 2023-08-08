@@ -21,7 +21,7 @@ MAX_LOG_FILE_LENGTH = 100
 
 # DRY_RUN is a mode that allows the code to run, without calling to the server.
 # PSEUDO_BATTERY allows for testing the code on a device without a battery
-flags = {"DRY_RUN": False, "PSEUDO_BATTERY": True}
+flags = {"DRY_RUN": False, "PSEUDO_BATTERY": False}
 
 
 def main():
