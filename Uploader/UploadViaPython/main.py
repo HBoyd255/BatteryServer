@@ -19,15 +19,21 @@ LOG_FILE_TYPE = "log"
 MAX_LOG_FILE_LENGTH = 100
 
 
-flags = {"DRY_RUN": False}
+# DRY_RUN is a mode that allows the code to run, without calling to the server.
+# PSEUDO_BATTERY allows for testing the code on a device without a battery
+flags = {"DRY_RUN": False, "PSEUDO_BATTERY": True}
 
 
 def main():
     # Get the name of the pc
     computer_name = name.get_encoded_device_name()
 
-    # Get the charge of the pc's battery
-    charge = battery_manager.get_battery_charge()
+    # Get the program is not running in PSEUDO_BATTERY mode.
+    if not flags["PSEUDO_BATTERY"]:
+        # Get the charge of the pc's battery
+        charge = battery_manager.get_battery_charge()
+    else:
+        charge = 51
 
     id_file_path = path.create_full_path(SECRETS_DIRECTORY_NAME, ID_FILE_NAME)
 
