@@ -15,14 +15,25 @@ This project contains 3 main sections;
 ## TO-DO
 
 ### Uploader
-- [ ] fix python code so I can handle HTTP codes.
+
+- [x] fix python code so I can handle HTTP codes.
 
 ### Server
+
 - [x] Create html page
+- [x] Add the ability to upload the "is_charging" status
 
 ### Downloader
+
 - [ ] Rewrite the ESP32 code.
+- [ ] Design a board for the.
 
+### KiCad Libraries used
 
+- [heltec_htit-wb32](https://github.com/bartloeff/heltec_htit-wb32)
 
+- [Heltec WiFi LoRa 32 Shield](https://grabcad.com/library/heltec-wifi-lora-32-shield-1)
 
+- [Switch Push Button](https://www.snapeda.com/parts/1825910-6/TE%20Connectivity/view-part/?ref=search&t=momentary%20switch)
+
+- [Red 617nm LED Indication](https://www.snapeda.com/parts/WP7113ID/Kingbright/view-part/?ref=search&t=led)
