@@ -20,13 +20,13 @@ This project contains 3 main sections;
 
 ### Server
 
-- [x] Create html page
-- [x] Add the ability to upload the "is_charging" status
+- [x] Create html page.
+- [ ] Add the ability to upload the "is_charging" status.
 
 ### Downloader
 
 - [ ] Rewrite the ESP32 code.
-- [ ] Design a board for the.
+- [x] Design a board for the led blinker.
 
 ### KiCad Libraries used
 
