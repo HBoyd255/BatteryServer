@@ -17,16 +17,20 @@ This project contains 3 main sections;
 ### Uploader
 
 - [x] fix python code so I can handle HTTP codes.
+- [ ] Write a quick-start for the IOS client.
 
 ### Server
 
-- [x] Create html page
-- [x] Add the ability to upload the "is_charging" status
+- [x] Create html page.
+- [ ] Add the ability to upload the "is_charging" status.
 
 ### Downloader
 
-- [ ] Rewrite the ESP32 code.
-- [ ] Design a board for the.
+- [x] Design the LEDBlinker Circuit.
+- [x] Design, Print and populate the LEDBlinker PCB.
+- [ ] Write the LEDBlinker code.
+
+
 
 ### KiCad Libraries used
 
