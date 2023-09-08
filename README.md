@@ -12,32 +12,35 @@ This project contains 3 main sections;
 
 3. User Client (Downloader): This application retrieves the battery levels for each device from the server, providing a comprehensive view of all monitored devices.
 
+## Contents
+
+- [Getting Started](GettingStarted/)
+  - [iOS Client](GettingStarted/iosClient/README.md)
+  - [iOS Client](GettingStarted/iosClient/README.md)
+- [Libraries used](#Libraries-used)
+
+## Libraries used
+
+- KiCad
+  - [heltec_htit-wb32](https://github.com/bartloeff/heltec_htit-wb32)
+  - [Heltec WiFi LoRa 32 Shield](https://grabcad.com/library/heltec-wifi-lora-32-shield-1)
+  - [Switch Push Button](https://www.snapeda.com/parts/1825910-6/TE%20Connectivity/view-part/?ref=search&t=momentary%20switch)
+  - [Red 617nm LED Indication](https://www.snapeda.com/parts/WP7113ID/Kingbright/view-part/?ref=search&t=led)
+- Ardiuno
+  - [ArduinoJson 6.21.3](arduinojson.org)
+  - [Heltec ESP32 Dev-Boards 1.1.1](http://heltec.cn)
+- Python
+  - [psutil 5.9.4](https://github.com/giampaolo/psutil)
+  - [Requests 2.31.0](https://requests.readthedocs.io/en/latest/)
+
 ## TO-DO
 
-### Uploader
+- [ ] Write a quick-start for the App scripts Server.
+- [ ] Write a quick-start for the Python Client.
+- [ ] Set the Favicon for the HTML page.
+- [ ] Rewrite README.md.
 
-- [x] fix python code so I can handle HTTP codes.
-- [ ] Write a quick-start for the IOS client.
+### Possible future features
 
-### Server
-
-- [x] Create html page.
-- [ ] Add the ability to upload the "is_charging" status.
-
-### Downloader
-
-- [x] Design the LEDBlinker Circuit.
-- [x] Design, Print and populate the LEDBlinker PCB.
-- [ ] Write the LEDBlinker code.
-
-
-
-### KiCad Libraries used
-
-- [heltec_htit-wb32](https://github.com/bartloeff/heltec_htit-wb32)
-
-- [Heltec WiFi LoRa 32 Shield](https://grabcad.com/library/heltec-wifi-lora-32-shield-1)
-
-- [Switch Push Button](https://www.snapeda.com/parts/1825910-6/TE%20Connectivity/view-part/?ref=search&t=momentary%20switch)
-
-- [Red 617nm LED Indication](https://www.snapeda.com/parts/WP7113ID/Kingbright/view-part/?ref=search&t=led)
+- Add the ability to upload the "is_charging" status.
+- Add more ways to display the information from the server.
