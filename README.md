@@ -39,6 +39,8 @@ This project contains 3 main sections;
 - [ ] Write a quick-start for the Python Client.
 - [ ] Set the Favicon for the HTML page.
 - [ ] Rewrite README.md.
+- [ ] fix the downloader code by adding defensive copying to the retrieveData()
+      function.
 
 ### Possible future features
 

@@ -49,6 +49,10 @@ void retrieveData(DynamicJsonDocument* prt_deviceList) {
         // Deserialize the JSON
         DeserializationError error = deserializeJson(*prt_deviceList, payload);
 
+        //TODO: Test if parsing succeeds, and only then, update the value of
+        // prt_deviceList.
+        
+
         // Test if parsing succeeds.
         if (error) {
             Serial.print("deserializeJson() failed: ");
