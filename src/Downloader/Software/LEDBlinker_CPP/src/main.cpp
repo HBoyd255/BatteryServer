@@ -10,9 +10,6 @@
 #include "systemInfo.h"
 
 
-IoBoard ioBoard()
-
-
 void setup() {
     Serial.begin(115200);
     pinMode(LED_PIN, OUTPUT);
