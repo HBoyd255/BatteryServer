@@ -7,17 +7,11 @@
 #include "timerControl.h"
 #include "wifiControl.h"
 
-#define LED_PIN 21
-#define BUTTON_PIN 22
+#include "systemInfo.h"
 
-// Sleep for 8 hours.
-#define SLEEP_DELAY MILLISECONDS_PER_HOUR * 8
 
-// Snooze for one hour.
-#define SNOOZE_DELAY MILLISECONDS_PER_HOUR * 1
+IoBoard ioBoard()
 
-// Poll the server ever 30 seconds.
-#define SERVER_POLL_DELAY MILLISECONDS_PER_SECOND * 30
 
 void setup() {
     Serial.begin(115200);

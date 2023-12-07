@@ -3,11 +3,6 @@
 
 #include <heltec.h>
 
-// The number of milliseconds in a day, hour, minute and second.
-#define MILLISECONDS_PER_HOUR 3600000
-#define MILLISECONDS_PER_MINUTE 60000
-#define MILLISECONDS_PER_SECOND 1000
-
 // The number of seconds remaining until a given time
 uint32_t secondsRemaining(uint32_t);
 
