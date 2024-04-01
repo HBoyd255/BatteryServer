@@ -2,8 +2,9 @@ import modules.log_file_manager as lfm
 import modules.device_name_manager as name
 import modules.battery_manager as battery_manager
 import modules.secret_manager as secrets
-import modules.url_manager as url
 import modules.path_manager as path
+
+from cooking_with_gas import Gas
 
 """
 This script gets the current device's name and battery charge and uploads it
@@ -33,29 +34,28 @@ def main():
         # Get the charge of the pc's battery
         charge = battery_manager.get_battery_charge()
     else:
-        charge = 51
+        charge = int(input("Battery Percentage: "))
 
     id_file_path = path.create_full_path(SECRETS_DIRECTORY_NAME, ID_FILE_NAME)
 
     # Retrieve the app scripts deployment ID from the json file
     id_string = secrets.get_deployment_id(id_file_path)
 
-    # Create the URL for setting the battery information
-    url_string = url.create_url(id_string)
+    # Create a Gas object with the deployment ID, to interact with the Google
+    # Apps Script Server
+    script = Gas(id_string)
 
     # Call the url to update the server with the current battery charge
     if not flags["DRY_RUN"]:
         data = {"device": computer_name, "charge": charge}
-        response = url.send_data_to_URL(url_string, data)
-        response.raise_for_status()  # Raises stored HTTPError, if one occurred.
-        response_json = response.json()
+        response_json = script.post(data)
         if "message" in response_json:
             lfm.log_text(
                 response_json["status"] + ": " + response_json["message"]
             )
 
     else:
-        print("Dry run mode: would have called url '" + url_string + "'")
+        print("Dry run mode: would have called url '" + script.get_url() + "'")
 
 
 if __name__ == "__main__":
