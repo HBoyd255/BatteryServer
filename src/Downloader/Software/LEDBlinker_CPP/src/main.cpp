@@ -1,14 +1,11 @@
-#include <Heltec.h>
-
 #include <ArduinoJson.h>
+#include <Heltec.h>
 
 #include "buttonControl.h"
 #include "displayControl.h"
+#include "systemInfo.h"
 #include "timerControl.h"
 #include "wifiControl.h"
-
-#include "systemInfo.h"
-
 
 void setup() {
     Serial.begin(115200);

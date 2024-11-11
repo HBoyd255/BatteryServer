@@ -1,6 +1,7 @@
 
-#include <Heltec.h>
 #include "printControl.h"
+
+#include <Heltec.h>
 
 /**
  * Print a 16 bit number in binary to the serial monitor.

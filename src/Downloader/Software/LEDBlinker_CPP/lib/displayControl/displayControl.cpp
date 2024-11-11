@@ -1,5 +1,5 @@
-#include <heltec.h>
 #include <ArduinoJson.h>
+#include <heltec.h>
 
 #define SCREEN_WIDTH 128
 #define SCREEN_HEIGHT 64
@@ -12,8 +12,7 @@
  * This function initialises the display and sets the font and text alignment.
  */
 void startDisplay() {
-    Heltec.begin(true /*DisplayEnable Enable*/,
-                 false /*LoRa Disable*/,
+    Heltec.begin(true /*DisplayEnable Enable*/, false /*LoRa Disable*/,
                  true /*Serial Enable*/);
     Heltec.display->setTextAlignment(TEXT_ALIGN_LEFT);
     Heltec.display->setFont(ArialMT_Plain_10);
@@ -26,8 +25,7 @@ void startDisplay() {
  * @param yTopPostion The y-coordinate of the top of the string.
  * @param stringToDraw The string to be drawn to the screen.
  */
-void drawRightAlignedString(uint8_t xRightPosition,
-                            uint8_t yTopPostion,
+void drawRightAlignedString(uint8_t xRightPosition, uint8_t yTopPostion,
                             String stringToDraw) {
     // Calculate the width of the string
     uint8_t stringPixelWidth = Heltec.display->getStringWidth(stringToDraw);
@@ -160,7 +158,8 @@ void displayHomeScreen(DynamicJsonDocument* ptr_deviceList) {
  * information about each device.
  * @param expirationTime The time at which the snooze timer will expire.
  */
-void displaySnoozeScreen(DynamicJsonDocument* ptr_deviceList, uint16_t snoozeRemaining) {
+void displaySnoozeScreen(DynamicJsonDocument* ptr_deviceList,
+                         uint16_t snoozeRemaining) {
     // Clear Screen
     Heltec.display->clear();
 
@@ -173,8 +172,7 @@ void displaySnoozeScreen(DynamicJsonDocument* ptr_deviceList, uint16_t snoozeRem
 
     // Display the charge information of the lowest charged device in the list.
     drawCentredString(30, "And the lowest charge is:");
-    drawRow(42,
-            (*ptr_deviceList)["data"][0]["device"],
+    drawRow(42, (*ptr_deviceList)["data"][0]["device"],
             (*ptr_deviceList)["data"][0]["charge"]);
 
     // Show the screen

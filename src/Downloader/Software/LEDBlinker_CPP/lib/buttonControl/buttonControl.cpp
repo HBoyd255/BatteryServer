@@ -1,6 +1,6 @@
-#include <Heltec.h>
-
 #include "buttonControl.h"
+
+#include <Heltec.h>
 
 /**
  * Counts the number of consecutive button presses.
